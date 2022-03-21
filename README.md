@@ -1,2 +1,2 @@
 # Workspace
-Coding study for linux.
+Coding study about mqtt-json-linux-system-programming.
