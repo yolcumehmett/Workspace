@@ -1,0 +1,26 @@
+{
+    "Informations":"Students",
+    "Personal":[{
+        "Name":"Mehmet Yolcu",
+        "Gender":"Male",
+        "Age":22,
+        "Address":
+                {
+                    "City":"Konya",
+                    "Street":"Gurhanlar St.",
+                    "Postal Code":42100
+                    
+                }
+
+    }],
+    "School":[{
+            "Level":"Bachelor of Science",
+            "Department":"EEE",
+            "Year": 4
+        },{
+            "Level":"Bachelor of Science",
+            "Department":"EEE",
+            "Year": 4
+        }]
+
+}

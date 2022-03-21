@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "json_visit.h": "c",
+        "json_object.h": "c",
+        "json.h": "c",
+        "string.h": "c",
+        "mosquitto.h": "c",
+        "time.h": "c",
+        "cstdlib": "c",
+        "semaphore.h": "c",
+        "fcntl.h": "c"
+    }
+}
