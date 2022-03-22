@@ -1,2 +1,2 @@
 # Workspace
-Coding study about mqtt-json-linux_system_programming
+Coding study about mqtt-json-interprocess_communication
