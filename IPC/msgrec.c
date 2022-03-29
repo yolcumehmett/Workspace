@@ -16,7 +16,7 @@ int main() {
   int qid = msgget(key, 0666 | IPC_CREAT); /* access if created already */
   if (qid < 0) report_and_exit("no access to queue...");
 
-  int types[] = {3, 1, 2, 1, 3, 2}; /* different than in sender */
+  int types[] = {2, 3, 1, 2, 1, 3}; /* different than in sender */
   int i;
   for (i = 0; i < MsgCount; i++) {
     queuedMessage msg; /* defined in queue.h */
