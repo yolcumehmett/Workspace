@@ -8,6 +8,14 @@
         "time.h": "c",
         "cstdlib": "c",
         "semaphore.h": "c",
-        "fcntl.h": "c"
-    }
+        "fcntl.h": "c",
+        "stddef.h": "c",
+        "json_util.h": "c",
+        "protocol.h": "c",
+        "stat.h": "c",
+        "mman.h": "c",
+        "shm.h": "c",
+        "unistd.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

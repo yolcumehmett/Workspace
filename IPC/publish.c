@@ -24,8 +24,10 @@ int main(){
     rc = mosquitto_connect(mosq1,"localhost",1883,60);
     
     json_object *jobj = json_object_new_object();
-    json_object *jstring = json_object_new_string("Mehmet Yolcu");
-    json_object_object_add(jobj,"Name",jstring);
+    json_object *jint= json_object_new_int(22);
+    json_object *jint1= json_object_new_int(42);
+    json_object_object_add(jobj,"Yas",jint);
+    json_object_object_add(jobj,"Numara",jint1);
     printf("The json object created: %s",json_object_to_json_string(jobj));
 
  

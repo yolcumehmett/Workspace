@@ -11,6 +11,7 @@
 #include <fcntl.h>          
 #include <unistd.h>
 #include <semaphore.h>
+#include "protocol.h"
 
 #define ByteSize 512
 #define BackingFile "/shmem"
@@ -42,7 +43,7 @@ void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_messag
 
     struct json_object *parsed_json;
     struct json_object *name;
-    
+    veri mesaj;
 
      printf("New message with topic %s: %s\n",msg->topic,(char*)msg->payload);
     
@@ -57,12 +58,14 @@ void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_messag
         printf("isim uzunluğu: %d\n", json_object_get_string_len((name)));
     } 
     else if (strcmp("test/t2",msg->topic) == 0){
-        
-        parsed_json = json_tokener_parse(msg->payload);
 
-        json_object_object_get_ex(parsed_json, "Name", &name);
+        parsed_json = json_tokener_parse(msg->payload);
+        json_object_object_get_ex(parsed_json, "Yas", &yas);
+        json_object_object_get_ex(parsed_json, "Numara", &yas);
+        mesaj.yas = json_object_get_int(mesaj.yas);
         printf("isim uzunluğu %d\n",msg->payloadlen);
-        printf("İsim: %s\n", json_object_get_string(name));
+        printf("Yaş: %s\n", json_object_get_int(yas));
+        printf("Numara: %s\n", json_object_get_int(numara));
          int fd = shm_open("/shmem",      /* name from smem.h */
 		    O_RDWR | O_CREAT, /* read/write, create if needed */
 		    0644);     /* access permissions (0644) */
