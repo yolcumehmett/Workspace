@@ -43,7 +43,7 @@ int main(){
      
     strcpy(ptr,json_object_to_json_string(jobj));
     
-
+printf("İsim: %s\n", json_object_get_string(yas));
     
     munmap(ptr,SIZE);
     close(fd);
