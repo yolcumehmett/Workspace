@@ -17,44 +17,32 @@ void report_and_exit(const char* msg) {
 int main() {
 
   int ByteSize;
+  void *memptr;
 
   ByteSize=sizeof(veri);
   veri *gelen_mesaj = NULL;
-  memset(&gelen_mesaj,0,ByteSize);
-  int fd = shm_open(BackingFile, O_RDWR, AccessPerms);  /* empty to begin */
-  if (fd < 0) report_and_exit("Can't get file descriptor...");
+  gelen_mesaj=calloc(1,ByteSize);
+  int fd = shm_open(BackingFile, O_RDONLY, AccessPerms);  /* empty to begin */
+  if (fd < 0) {
+    printf("fd: %d",fd);
+    report_and_exit("Can't get file descriptor...");
+  }
   ByteSize=sizeof(veri);
   /* get a pointer to memory */
-  caddr_t memptr = mmap(NULL,       /* let system pick where to put segment */
+  memptr = mmap(NULL,       /* let system pick where to put segment */
 			ByteSize,   /* how many bytes */
-			PROT_READ | PROT_WRITE, /* access protections */
+			PROT_READ , /* access protections */
 			MAP_SHARED, /* mapping visible to other processes */
 			fd,         /* file descriptor */
 			0);         /* offset: start at 1st byte */
-  if ((caddr_t) -1 == memptr) report_and_exit("Can't access segment...");
+      
 
-  /* create a semaphore for mutual exclusion */
-  sem_t* semptr = sem_open(SemaphoreName, /* name */
-			   O_CREAT,       /* create the semaphore */
-			   AccessPerms,   /* protection perms */
-			   0);            /* initial value */
-  if (semptr == (void*) -1) report_and_exit("sem_open");
 
-  /* use semaphore as a mutex (lock) by waiting for writer to increment it */
-  //if (!sem_wait(semptr)) { /* wait until semaphore != 0 */
-  //  int i;
-    //for (i = 0; i < strlen(MemContents); i++)
-      //write(STDOUT_FILENO, memptr + i, 1); /* one byte at a time */
-    //sem_post(semptr);
-  //}
-  memcpy(&gelen_mesaj,&memptr,ByteSize); /* copy some ASCII bytes to the segment */
+  printf("memptr: %s ", (char *)memptr);
+
+  memcpy(gelen_mesaj,memptr,ByteSize); /* copy some ASCII bytes to the segment */
        
-  printf("yas:%d numara:%d",gelen_mesaj->yas, gelen_mesaj->numara);
-  /* cleanup */
-  munmap(memptr, ByteSize);
-  //shm_detach();
-  close(fd);
-  sem_close(semptr);
-  unlink(BackingFile);
+  printf("yas:%d numara:%d\n",gelen_mesaj->yas, gelen_mesaj->numara);
+
   return 0;
 }

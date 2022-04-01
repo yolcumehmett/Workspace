@@ -1,5 +1,5 @@
 #define BackingFile "/shmem"
-#define AccessPerms 0666
+#define AccessPerms 0644
 #define SemaphoreName "mysemaphore"
 
  typedef struct {
