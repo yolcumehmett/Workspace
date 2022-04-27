@@ -81,7 +81,7 @@ void on_connect(struct mosquitto *mosq, void *obj, int rc)
         ftruncate(fd, ByteSize); /* get the bytes */
         if (ftruncate(fd,ByteSize)==-1) report_and_exit("ftruncate");
         memptr = mmap(NULL,       /* let system pick where to put segment */
-                    ByteSize,   /* how many bytes */
+                    ByteSize,   /* how many bytes */ 
                     PROT_WRITE, /* access protections */
                     MAP_SHARED, /* mapping visible to other processes */
                     fd,         /* file descriptor */

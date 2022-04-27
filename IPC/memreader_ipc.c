@@ -1,4 +1,3 @@
-/** Compilation: gcc -o memreader memreader.c -lrt -lpthread **/
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/mman.h>
@@ -43,6 +42,11 @@ int main() {
   memcpy(gelen_mesaj,memptr,ByteSize); /* copy some ASCII bytes to the segment */
        
   printf("yas:%d numara:%d\n",gelen_mesaj->yas, gelen_mesaj->numara);
+
+  munmap(memptr, ByteSize);
+  close(fd);
+  
+  unlink(BackingFile);
 
   return 0;
 }
